@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block subtitle %}Calendar{%endblock%}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/calendar.css">
+{% endblock %}
+
+{%block content%}
+
+    <div id="calendar">
+
+    </div>
+
+
+{%endblock%}
+
+{% block script %}
+    <script type="text/javascript" src="/static/js/calendar.js"></script>
+    <script type="text/javascript">
+        var calendar = $("#calendar").calendar(
+            {
+                tmpl_path: "/static/tmpls/",
+                events_source: function () { return []; }
+            });
+    </script>
+{% endblock %}

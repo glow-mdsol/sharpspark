@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block subtitle %}Tutorials{%endblock%}
+
+{%block content%}
+    <h2>Tutoring</h2>
+
+    <p class="lead">We can all benefit from a little help from time to time!!</p>
+    <p>Along with our wide selection of class based exercises we also offer a selection of tutoring services.</p>
+
+    <p>Please complete the following information for us to call you back and make arrangements</p>
+
+    <form role="form">
+        <div class="form-group">
+            <label for="fullname">Your Name</label>
+            <input id="fullname" class="form-control" type="text" name="Your Name" size=10 placeholder="Your name">
+        </div>
+        <div class="form-group">
+            <label for="contactnumber">Contact Number</label>
+            <input type="text" id="contactnumber" class="form-control" placeholder="Contact Number">
+        </div>
+        <div class="form-group">
+            <label for="emailaddress">Email</label>
+            <input type="email" id="emailaddress" size=10 class="form-control" placeholder="Email">
+        </div>
+        <div class="row">
+            <div class="col-lg-4">
+                <label for="tutor-type">What subjects are you interested in?</label>
+            </div>
+            <div class="col-lg-8">
+                <ul class="list-unstyled">
+                    <li><input type="checkbox" name="tutor-type" value="a-level-chem"/>A-level Chemistry</li>
+                    <li><input type="checkbox" name="tutor-type" value="gcse-level-chem"/>GCSE Chemistry</li>
+                    <li><input type="checkbox" name="tutor-type" value="a-level-phys"/>A-level Physics</li>
+                    <li><input type="checkbox" name="tutor-type" value="gcse-level-phys"/>GCSE Chemistry</li>
+                    <li><input type="checkbox" name="tutor-type" value="general-math"/>Math</li>
+                </ul>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+{%endblock%}

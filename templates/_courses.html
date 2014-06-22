@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block subtitle %}View Courses{%endblock%}
+
+{%block content%}
+    <h4>Manage Courses</h4>
+    <div class="panel">
+        <div class="panel-heading">
+            <h4>Current Courses</h4>
+        </div>
+        <div class="panel-body">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Course name</th>
+                    <th>Course Type</th>
+                    <th>Course Description</th>
+                    <th>Course Duration</th>
+                    <th>Course Cost</th>
+                    <th>Course Active?</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for course in courses %}
+                    <tr>
+                    <td>{{ course.title }}</td>
+                    <td>{{ course.course_type }}</td>
+                    <td>{{ course.description }}</td>
+                    <td>{{ course.duration }} {{ course.duration_unit }}</td>
+                    <td>{{ course.cost }}</td>
+                    <td>{{ course.available }}</td>
+                    <td><a href="{{ uri_for('course', course=course.link) }}">Edit</a></td>
+                    </tr>
+
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+{%endblock%}

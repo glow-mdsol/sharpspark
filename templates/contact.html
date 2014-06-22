@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block subtitle %}Contact{%endblock%}
+
+{%block content%}
+    <h4>Contact</h4>
+<div class="panel-body" >
+    <p> Please contact Vikki on <b>v.low@sharp-spark.com</b> or 07966867775 for any further questions.  You can also fill in the contact form below.</p>
+
+<form role="form">
+    <div class="form-group">
+        <label for="firstname">First Name</label>
+        <input id="firstname" class="form-control" type="text" name="First Name" size=10 placeholder="First name">
+    </div>
+    <div class="form-group">
+        <label for="lastname">Last Name</label>
+        <input class="form-control" type="text" id="lastname" placeholder="Last Name">
+    </div>
+    <div class="form-group">
+        <label for="contactnumber">Contact Number</label>
+        <input type="text" id="contactnumber" class="form-control" placeholder="Contact Number">
+    </div>
+    <div class="form-group">
+        <label for="emailaddress">Email</label>
+        <input type="email" id="emailaddress" size=10 class="form-control" placeholder="Email">
+    </div>
+    <div class="form-group">
+        <label for="comment">Comment</label>
+        <input type="text" id="comment" placeholder="Comment" class="form-control">
+    </div>
+    <button type="submit" class="btn btn-default">Submit</button>
+</form>
+</div>
+{%endblock%}
