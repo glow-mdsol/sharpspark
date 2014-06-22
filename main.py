@@ -16,7 +16,7 @@
 #
 import webapp2
 from handlers import IndexHandler, SchoolsHandler, AfterSchoolsHandler, PartiesHandler, ContactHandler, TutorHandler, \
-    CalendarHandler, CoursesHandler, CourseHandler
+    CalendarHandler, CourseHandler, AdminCoursesHandler, AdminCourseHandler
 
 routes =  [
     webapp2.Route('/', IndexHandler, 'index'),
@@ -26,8 +26,9 @@ routes =  [
     webapp2.Route('/contact', ContactHandler, 'contact'),
     webapp2.Route('/tutor', TutorHandler, 'tutor'),
     webapp2.Route('/calendar', CalendarHandler, 'calendar'),
-    webapp2.Route('/admin/courses', CoursesHandler, '_courses'),
-    webapp2.Route('/admin/course', CourseHandler, '_course'),
-    webapp2.Route('/admin/course/<course_id>', CourseHandler, '_course'),
+    webapp2.Route('/admin/courses', AdminCoursesHandler, '_courses'),
+    webapp2.Route('/course/<course_id>', CourseHandler, 'course'),
+    webapp2.Route('/admin/course', AdminCourseHandler, '_course_new'),
+    webapp2.Route('/admin/course/<course_id>', AdminCourseHandler, '_course'),
 ]
 app = webapp2.WSGIApplication(routes, config={}, debug=True)

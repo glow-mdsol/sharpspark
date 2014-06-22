@@ -4,6 +4,9 @@
 
 {%block content%}
     <h4>Manage Courses</h4>
+    <div class="right">
+    <a href="{{ uri_for('_course_new') }}">Add a new course</a>
+    </div>
     <div class="panel">
         <div class="panel-heading">
             <h4>Current Courses</h4>
@@ -14,7 +17,6 @@
                 <tr>
                     <th>Course name</th>
                     <th>Course Type</th>
-                    <th>Course Description</th>
                     <th>Course Duration</th>
                     <th>Course Cost</th>
                     <th>Course Active?</th>
@@ -26,11 +28,10 @@
                     <tr>
                     <td>{{ course.title }}</td>
                     <td>{{ course.course_type }}</td>
-                    <td>{{ course.description }}</td>
                     <td>{{ course.duration }} {{ course.duration_unit }}</td>
                     <td>{{ course.cost }}</td>
                     <td>{{ course.available }}</td>
-                    <td><a href="{{ uri_for('course', course=course.link) }}">Edit</a></td>
+                    <td><a href="{{ uri_for('_course', course_id=course.link) }}">Edit</a></td>
                     </tr>
 
                 {% endfor %}

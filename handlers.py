@@ -2,6 +2,8 @@ from google.appengine.ext import ndb
 from google.appengine.ext.webapp.util import login_required
 from models import Course
 import settings
+import logging
+logging.basicConfig(level=logging.DEBUG)
 
 __author__ = 'vikki'
 import webapp2
@@ -36,7 +38,8 @@ class SchoolsHandler(BaseHandler):
 
 class AfterSchoolsHandler(BaseHandler):
     def get(self):
-        return self.render_template('afterschools.html')
+        courses = Course.get_active_courses()
+        return self.render_template('afterschools.html', courses=courses)
 
 
 class PartiesHandler(BaseHandler):
@@ -70,13 +73,19 @@ class EventsHandler(BaseHandler):
         pass
 
 
-class CoursesHandler(BaseHandler):
+class AdminCoursesHandler(BaseHandler):
     def get(self):
         courses = Course.query().fetch()
         return self.render_template('_courses.html', courses=courses)
 
-
 class CourseHandler(BaseHandler):
+
+    def get(self, course_id):
+        course_key = ndb.Key(urlsafe=course_id)
+        course = course_key.get()
+        return self.render_template('course.html', course=course)
+
+class AdminCourseHandler(BaseHandler):
     def get(self, course_id=None):
         if course_id:
             course_key = ndb.Key(urlsafe=course_id)
@@ -85,8 +94,8 @@ class CourseHandler(BaseHandler):
         else:
             return self.render_template('_course.html')
 
-    def post(self):
-        if self.request.has_key('link'):
+    def post(self, course_id=None):
+        if self.request.get('link'):
             ckey = ndb.Key(urlsafe=self.request.get('link'))
             course = ckey.get()
         else:
@@ -95,5 +104,10 @@ class CourseHandler(BaseHandler):
         course.title = self.request.get('title')
         course.description = self.request.get('description')
         course.duration = int(self.request.get('duration'))
-        course.available = True if self.request.get('available') == 1 else False
+        course.duration_unit = self.request.get('duration_unit')
+        course.available = True if self.request.get('available') == "1" else False
         course.cost = float(self.request.get('cost'))
+        course.course_type = self.request.get('course_type')
+        course.put()
+
+        self.redirect_to('_courses')

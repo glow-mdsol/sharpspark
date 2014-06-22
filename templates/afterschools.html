@@ -38,11 +38,20 @@
 <div class="panel-body" >
 <p>Sharp Sparks offers a range of courses which all run 10 weeks as well as running 3 hr workshops on an as required basis.
 Three  such examples of these are:</p>
-<ol>
-    <li>Introduction to Programming Wearable Electronics (3hr workshop)<br/><br/>
-    Twinkle Lily Pad and Sparkle boards are designed to get you started in the world of e-textiles.   Students will learn how to program the sparkle board and learn about basic circuits before they turn them into wearable electronics.  A small amount of sewing will be required.
-    </li>
+
+    <ol>
+        {% for course in courses %}
+            {% if course.available %}
+            <li>{{course.title}} ({{course.duration}} {{ course.duration_unit }} {{ course.course_type }})<br/><br/>
+                {{ course.description }} (<a href="/course/{{ course.link }}">More info</a>)
+            </li>
+            {% endif %}
+        {% endfor %}
     <br/>
+
+    <li>Introduction to Programming Wearable Electronics (3hr workshop)<br/><br/>
+            Twinkle Lily Pad and Sparkle boards are designed to get you started in the world of e-textiles.   Students will learn how to program the sparkle board and learn about basic circuits before they turn them into wearable electronics.  A small amount of sewing will be required.
+   </li>
     <li>Introduction to Computer Programming in Python (10 weeks)<br/><br/>
     This course will involve learning basic programming concepts and using these skills to program basic games such as “Magic 8 Ball” and “What’s the number?”.
     </li>

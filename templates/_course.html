@@ -13,16 +13,18 @@
             {% endif %}
         </div>
         <div class="panel-body">
-        {% if course %}
-            <form role="form">
+        <form role="form" method="post">
+
+            {% if course %}
                 <div class="form-group">
                     <input type="hidden" name="link" value="{{ course.link }}">
                     <label for="title">Course Name</label>
                     <input id="title" class="form-control" type="text" name="title" size=10 value="{{ course.title }}">
                 </div>
                 <div class="form-group">
-                    <label for="description">Last Name</label>
-                    <textarea rows="3" class="form-control" type="text" name="description" id="description" value="{{ course.desc }}">
+                    <label for="description">Description</label>
+                    <textarea rows="3" class="form-control" type="text" name="description" id="description" >
+                        {{ course.description }}
                     </textarea>
                 </div>
                 <div class="form-group">
@@ -31,7 +33,28 @@
                 </div>
                 <div class="form-group">
                     <label for="duration">Duration</label>
-                    <input type="number" id="duration" name="duration" class="form-control" value="{{ duration }}">
+                    <input type="number" id="duration" name="duration" class="form-control" value="{{ course.duration }}">
+                </div>
+                <div class="form-group">
+                    <label for="duration_unit">Duration Unit</label>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="duration_unit" id="unit_h" value="h" {% if course.duration_unit == 'h' %} checked {% endif %}>
+                            hour(s)
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="duration_unit" id="unit_d" value="d" {% if course.duration_unit == 'd' %} checked {% endif %}>
+                            day(s)
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="duration_unit" id="unit_w" value="w" {% if course.duration_unit == 'd' %} checked {% endif %}>
+                            week(s)
+                        </label>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="cost">Cost</label>
@@ -48,14 +71,11 @@
                     <div class="radio">
                         <label>
                             <input type="radio" name="available" id="available_no" value="0"{% if not course.available %} checked {% endif %}>
-                            Yes
+                            No
                         </label>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-default">Submit</button>
-            </form>
         {% else %}
-            <form role="form">
                 <div class="form-group">
                     <label for="title">Course Name</label>
                     <input id="title" class="form-control" type="text" name="title" size=10 placeholder="Title">
@@ -75,7 +95,24 @@
                 </div>
                 <div class="form-group">
                     <label for="duration_unit">Duration Unit</label>
-                    <input type="number" id="duration_unit" name="duration_unit" class="form-control" placeholder="Duration">
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="duration_unit" id="unit_h" value="h" checked>
+                            hour(s)
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="duration_unit" id="unit_d" value="d">
+                            day(s)
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="duration_unit" id="unit_w" value="w">
+                            week(s)
+                        </label>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="cost">Cost</label>
@@ -96,9 +133,9 @@
                         </label>
                     </div>
                 </div>
+        {% endif %}
                  <button type="submit" class="btn btn-default">Submit</button>
             </form>
-        {% endif %}
         </div>
     </div>
 {%endblock%}

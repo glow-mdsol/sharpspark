@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block subtitle %} - Course {{ course.title }}{%endblock%}
+
+{%block content%}
+
+    <h4>Course - {{ course.title }} {% if not course.available %}(Not currently available - click <a href="#">here</a> to be notified when it is) {% endif %}</h4>
+
+    <p>Duration: {{ course.duration }} {{ course.duration_unit }}</p>
+    <p>Cost: {{ course.cost }}</p>
+    <p>{{ course.description }}</p>
+
+    <h5>Actions</h5>
+    <ul>
+    <li><a href="#">Sign up</a></li>
+    <li><a href="#">Leave feedback</a></li>
+    <li><a href="#">Share with a friend</a></li>
+    </ul>
+
+{% endblock %}

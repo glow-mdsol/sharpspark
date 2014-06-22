@@ -19,7 +19,7 @@ class Course(LinkableModel):
     duration_unit = ndb.StringProperty(choices=["h", "d", "w"])
     description = ndb.TextProperty(indexed=False)
     available = ndb.BooleanProperty()
-    course_type = ndb
+    course_type = ndb.StringProperty()
     cost = ndb.FloatProperty()
 
     @classmethod
@@ -27,6 +27,9 @@ class Course(LinkableModel):
         entity = cls(parent=ndb.Key('Course', "Courses"), **kwargs)
         return entity
 
+    @classmethod
+    def get_active_courses(cls):
+        return cls.query(cls.available == True)
 
 class Event(LinkableModel):
     # name of event
